@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Container.h"
-//#include "Input/Input.h"
+#include "Input/Input.h"
+#include <Core/SubsystemManager.hpp>
 
 //#include "Shared/IO/Logger.h"
 
@@ -187,7 +188,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		{
 			unsigned char key = static_cast<unsigned char>(wParam);
 
-			/*auto& kbd = GetSubsystem<KeyboardQueue>();
+			auto& kbd = GetSubsystem<KeyboardQueue>();
 
 			if(kbd.IsKeysAutoRepeat())
 				kbd.OnKeyPressed(key);
@@ -196,7 +197,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 				const bool wasPressed = lParam & 0x40000000;
 				if(!wasPressed)
 					kbd.OnKeyPressed(key);
-			}*/
+			}
 
 			break;
 		}
@@ -205,7 +206,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		{
 			unsigned char key = static_cast<unsigned char>(wParam);
 
-			//GetSubsystem<KeyboardQueue>().OnKeyReleased(key);
+			GetSubsystem<KeyboardQueue>().OnKeyReleased(key);
 
 			break;
 		}
@@ -214,7 +215,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		{
 			unsigned char ch = static_cast<unsigned char>(wParam);
 
-			/*auto& kbd = GetSubsystem<KeyboardQueue>();
+			auto& kbd = GetSubsystem<KeyboardQueue>();
 
 			if(kbd.IsCharsAutoRepeat())
 				kbd.OnChar(ch);
@@ -223,7 +224,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 				const bool wasPressed = lParam & 0x40000000;
 				if(!wasPressed)
 					kbd.OnChar(ch);
-			}*/
+			}
 
 			break;
 		}
@@ -234,7 +235,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnMouseMove(x, y);
+			GetSubsystem<MouseQueue>().OnMouseMove(x, y);
 
 			break;
 		}
@@ -245,7 +246,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnLeftPressed(x, y);
+			GetSubsystem<MouseQueue>().OnLeftPressed(x, y);
 
 			break;
 		}
@@ -255,7 +256,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnLeftReleased(x, y);
+			GetSubsystem<MouseQueue>().OnLeftReleased(x, y);
 
 			break;
 		}
@@ -266,7 +267,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnRightPressed(x, y);
+			GetSubsystem<MouseQueue>().OnRightPressed(x, y);
 
 			break;
 		}
@@ -276,7 +277,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnRightReleased(x, y);
+			GetSubsystem<MouseQueue>().OnRightReleased(x, y);
 
 			break;
 		}
@@ -287,7 +288,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnMiddlePressed(x, y);
+			GetSubsystem<MouseQueue>().OnMiddlePressed(x, y);
 
 			break;
 		}
@@ -297,7 +298,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int x = GET_X_LPARAM(lParam);
 			int y = GET_Y_LPARAM(lParam);
 
-			//GetSubsystem<MouseQueue>().OnMiddleReleased(x, y);
+			GetSubsystem<MouseQueue>().OnMiddleReleased(x, y);
 
 			break;
 		}
@@ -309,10 +310,10 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int y = GET_Y_LPARAM(lParam);
 
 			WORD button = GET_XBUTTON_WPARAM(wParam);
-			/*if(button == XBUTTON1)
+			if(button == XBUTTON1)
 				GetSubsystem<MouseQueue>().OnX1Pressed(x, y);
-			else if(button == XBUTTON1)
-				GetSubsystem<MouseQueue>().OnX2Pressed(x, y);*/
+			else if(button == XBUTTON2)
+				GetSubsystem<MouseQueue>().OnX2Pressed(x, y);
 
 			break;
 		}
@@ -323,10 +324,10 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			int y = GET_Y_LPARAM(lParam);
 
 			WORD button = GET_XBUTTON_WPARAM(wParam);
-			/*if(button == XBUTTON1)
+			if(button == XBUTTON1)
 				GetSubsystem<MouseQueue>().OnX1Released(x, y);
-			else if(button == XBUTTON1)
-				GetSubsystem<MouseQueue>().OnX2Released(x, y);*/
+			else if(button == XBUTTON2)
+				GetSubsystem<MouseQueue>().OnX2Released(x, y);
 
 			break;
 		}
@@ -338,10 +339,10 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 
 			int wheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
 
-			/*if(wheelDelta > 0)
+			if(wheelDelta > 0)
 				GetSubsystem<MouseQueue>().OnWheelUp(x, y);
 			else if(wheelDelta < 0)
-				GetSubsystem<MouseQueue>().OnWheelDown(x, y);*/
+				GetSubsystem<MouseQueue>().OnWheelDown(x, y);
 
 			break;
 		}
@@ -372,7 +373,7 @@ LRESULT WINAPI Container::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 
 						if(raw->header.dwType == RIM_TYPEMOUSE)
 						{
-							//GetSubsystem<MouseQueue>().OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+							GetSubsystem<MouseQueue>().OnMouseMoveRaw(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
 						}
 					}
 				}

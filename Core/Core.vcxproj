@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="SubsystemManager.hpp" />
     <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>

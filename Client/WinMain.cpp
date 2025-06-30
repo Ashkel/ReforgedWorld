@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "Window/Application.h"
+#include <Core/SubsystemManager.hpp>
 
 using namespace DirectX;
 
@@ -58,6 +59,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 			app.Release();
 		}
+
+		ClearAllSubsystems();
 
 		CoUninitialize();
 	}
