@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "Window/Application.h"
 #include <Core/SubsystemManager.hpp>
+#include "DebugConsole.h"
 
 using namespace DirectX;
 
@@ -32,12 +33,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-#ifdef _DEBUG
-	AllocConsole();
-#pragma warning(disable : 4996)
-	(void)freopen("CONOUT$", "w", stdout);
-#pragma warning restore
-#endif // DEBUG
+#if defined(_DEBUG)
+	DebugConsole console;
+#endif
 
 	try
 	{

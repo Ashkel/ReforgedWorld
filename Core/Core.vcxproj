@@ -76,13 +76,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EventProvider.hpp" />
+    <ClInclude Include="ThirdParty\Obfuscator.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="SubsystemManager.hpp" />
     <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="Utility\EnumFlags.hpp" />
+    <ClInclude Include="Utility\File.hpp" />
+    <ClInclude Include="Utility\FunctionBinder.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StepTimer.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="Core.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

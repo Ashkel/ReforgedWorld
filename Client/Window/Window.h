@@ -24,7 +24,7 @@ protected:
 	HINSTANCE m_hInstance;
 	HWND m_hWnd;
 	DWORD m_dwWindowStyle;
-	wchar_t m_szWindowClass[MAX_PATH];
+	wchar_t m_szWindowClass[MAX_PATH]{};
 };
 
 

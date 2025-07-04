@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DebugConsole.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\KeyboardEvent.h" />
     <ClInclude Include="Input\KeyboardQueue.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="Input\KeyboardEvent.cpp" />
     <ClCompile Include="Input\KeyboardQueue.cpp" />
     <ClCompile Include="Input\MouseEvent.cpp" />
