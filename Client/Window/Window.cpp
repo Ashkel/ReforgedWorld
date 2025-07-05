@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Container.h"
 #include "Resource.h"
+#include <Core/Utility/Time.hpp>
 
 static LRESULT WINAPI HandleMsgRedirect(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -31,7 +32,7 @@ static LRESULT WINAPI HandleMsgSetup(HWND hWnd, UINT message, WPARAM wParam, LPA
 
 		if(pWindow == nullptr)
 		{
-			//LOGERROR("Critical Error: Pointer to window container is null during WM_NCCREATE!");
+			//LOG_ERROR("Critical Error: Pointer to window container is null during WM_NCCREATE!");
 
 			exit(-1);
 
@@ -53,6 +54,7 @@ Window::Window()
 	: m_hInstance(nullptr), m_hWnd(nullptr), m_dwWindowStyle(0u)
 {
 	::SetProcessDPIAware();
+
 }
 
 Window::~Window()
@@ -71,7 +73,7 @@ bool Window::Initialize(Container* pContainer, HINSTANCE hInstance, const TCHAR*
 
 	if(!RegisterWindowClass())
 	{
-		//LOGERROR("RegisterWindowClass failed!\r\t-> Code: {0}", GetLastError());
+		//LOG_ERROR("RegisterWindowClass failed!\r\t-> Code: {0}", GetLastError());
 
 		return false;
 	}
@@ -115,7 +117,7 @@ bool Window::Initialize(Container* pContainer, HINSTANCE hInstance, const TCHAR*
 
 	if(!m_hWnd)
 	{
-		//LOGERROR("CreateWindowEx failed!\r\t-> Code: {0}", GetLastError());
+		//LOG_ERROR("CreateWindowEx failed!\r\t-> Code: {0}", GetLastError());
 
 		return false;
 	}

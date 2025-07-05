@@ -3,8 +3,6 @@
 #include "Input/Input.h"
 #include <Core/SubsystemManager.hpp>
 
-//#include "Shared/IO/Logger.h"
-
 Container::Container()
 	: m_Window(), m_IsRawInputInitialized(false)
 {
@@ -19,7 +17,7 @@ Container::Container()
 
 		if(RegisterRawInputDevices(&rid, 1, sizeof(rid)) == FALSE)
 		{
-			//LOGERROR("Failed to RegisterRawInputDevices!");
+			//LOG_ERROR("Failed to RegisterRawInputDevices!");
 
 			exit(-1);
 		}

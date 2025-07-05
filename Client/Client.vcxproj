@@ -79,6 +79,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DebugConsole.h" />
+    <ClInclude Include="Graphics\GraphicDevice.h" />
+    <ClInclude Include="Graphics\GraphicEngine.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\KeyboardEvent.h" />
     <ClInclude Include="Input\KeyboardQueue.h" />
@@ -92,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DebugConsole.cpp" />
+    <ClCompile Include="Graphics\GraphicDevice.cpp" />
+    <ClCompile Include="Graphics\GraphicEngine.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Input\KeyboardEvent.cpp" />
     <ClCompile Include="Input\KeyboardQueue.cpp" />
     <ClCompile Include="Input\MouseEvent.cpp" />

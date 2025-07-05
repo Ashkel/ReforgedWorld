@@ -24,12 +24,19 @@ public:
 	 * @param threadCount Number of worker threads to spawn.
 	 *                    Defaults to hardware concurrency.
 	 */
-	explicit ThreadPool(size_t threadCount = std::thread::hardware_concurrency());
+	explicit ThreadPool(size_t threadCount = std::thread::hardware_concurrency())
+		: m_done(false)
+	{
+		Start(threadCount);
+	}
 
 	/**
 	 * @brief Destroy the Thread Pool, waits for all threads to finish.
 	 */
-	~ThreadPool();
+	~ThreadPool()
+	{
+		Stop();
+	}
 
 	 /**
 	 * @brief Submit a task to the pool.
@@ -80,7 +87,32 @@ private:
 	 *
 	 * @param threadCount Number of worker threads to create.
 	 */
-	void Start(size_t threadCount);
+	void Start(size_t threadCount)
+	{
+		for(size_t i = 0; i < threadCount; ++i)
+		{
+			m_threads.emplace_back([this]()
+								   {
+									   while(!m_done.load())
+									   {
+										   std::function<void()> task;
+
+										   {
+											   std::unique_lock lock(m_mutex);
+											   m_cv.wait(lock, [this]() { return m_done || !m_tasks.empty(); });
+
+											   if(m_done && m_tasks.empty())
+												   return;
+
+											   task = std::move(m_tasks.front());
+											   m_tasks.pop();
+										   }
+
+										   task();
+									   }
+								   });
+		}
+	}
 
 	/**
 	 * @brief Stop the thread pool and join all worker threads.
@@ -92,5 +124,13 @@ private:
 	 * This is called automatically by the destructor,
 	 * but can also be called manually if needed.
 	 */
-	void Stop();
+	void Stop()
+	{
+		m_done.store(true);
+		m_cv.notify_all();
+
+		for(auto& t : m_threads)
+			if(t.joinable())
+				t.join();
+	}
 };

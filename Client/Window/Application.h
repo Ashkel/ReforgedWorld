@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Container.h"
-#include <Core/StepTimer.h>
+#include <Core/StepTimer.hpp>
 
 class Application : public Container
 {

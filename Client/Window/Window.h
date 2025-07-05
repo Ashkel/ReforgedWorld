@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Logger.h"
 
 class Container;
 
