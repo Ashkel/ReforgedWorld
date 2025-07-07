@@ -47,6 +47,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -77,6 +80,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EventProvider.hpp" />
+    <ClInclude Include="Network\Client.hpp" />
+    <ClInclude Include="Network\ClientSession.hpp" />
+    <ClInclude Include="Network\Crypto.hpp" />
+    <ClInclude Include="Network\GameEvent.hpp" />
+    <ClInclude Include="Network\HardPacket.hpp" />
+    <ClInclude Include="Network\Opcodes.hpp" />
+    <ClInclude Include="Network\Packet.hpp" />
+    <ClInclude Include="Network\PacketDispatcher.hpp" />
+    <ClInclude Include="Network\Server.hpp" />
+    <ClInclude Include="Network\ThreadSafeQueue.hpp" />
     <ClInclude Include="ThirdParty\Obfuscator.h" />
     <ClInclude Include="StepTimer.hpp" />
     <ClInclude Include="SubsystemManager.hpp" />
